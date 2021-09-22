@@ -1,0 +1,25 @@
+﻿
+@model TopicModel
+<h1>@Model.Name</h1>
+@{
+    foreach (var c in ViewBag.UnderTopics)
+    {
+        <hr align="left" width="500" size="2" color="#ff0000" />
+        <h4>@c.Name</h4>
+        <div> @c.Owner</div>
+        @if (c.Owner == Startup.Username)
+        {
+            <a asp-area="" asp-controller="Home" asp-action="EditTopic" asp-route-id="@c.Id"><h9>Edit</h9></a>
+            <a asp-area="" asp-controller="Home" asp-action="DeleteTopic" asp-route-id="@c.Id"><h9>Delete</h9></a>
+           
+            
+        }
+
+        <br />
+    }
+}
+@{ if (Startup.LoginState)
+    {
+        <a asp-area="" asp-controller="Home" asp-action="CreateUnderTopic" asp-route-id="@Model.Id"><h9>Create post</h9></a>
+    }
+}

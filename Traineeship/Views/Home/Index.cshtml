@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<TopicModel>
+        <h1>Topics</h1>
+        @{ foreach (var c in Model)
+            {
+                if (c.ParentId == 0)
+                {
+                <div>
+                    <a asp-area="" asp-controller="Home" asp-action="UnderTopic" asp-route-id="@c.Id" asp-route-name="@c.Name"><h5>@c.Name by @c.Owner</h5></a><br />
+                </div>
+                    }
+                }
+
+            }
+        @{ if (Startup.LoginState)
+            {
+                <a asp-area="" asp-controller="Home" asp-action="CreateTopic"><h9>Create topic</h9></a>
+            }
+        }
